@@ -83,13 +83,6 @@ paths:
       tags:
         - Subscriber
       description: 'Validates a subscriber. In this API the Registry generates a random string, encrypts it with the subscriber\''s encryption public key and sends it to the subscriber\''s callback URL. The subscriber then decrypts the string using it''s encryption private key and sends back the decypted value to the registry. If the decrypted value is the same as the sent value, the subscriber get''s added to the registry with a ```status = "SUBSCRIBED"```'
-      parameters:
-        - in: header
-          name: Signature
-          description: This contains the digital signature of the request body signed using the signing private key of the Registry
-          schema:
-            type: string
-          required: true
       requestBody:
         description: Contains a subscriber challenge key to be decrypted by the subscriber
         content:
@@ -118,13 +111,8 @@ paths:
       tags:
         - Registry
       description: Look up subscriber(s) in a registry
-      parameters:
-        - in: header
-          name: Signature
-          description: This contains the digital signature of the request body signed using the signing private key of the Subscriber
-          schema:
-            type: string
-          required: true
+      security:
+        - SubscriberAuth: []
       requestBody:
         description: TODO
         content:
@@ -231,8 +219,8 @@ components:
           type: string
           format: date-time
   securitySchemes:
-    DigitalSignatureAuth:
-      type: http
-      scheme: digest
-security:
-  - DigitalSignatureAuth: []
+    SubscriberAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature of message body using BG, BAP or BPP subscriber''s signing private key. Format: Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}" algorithm="xed25519" created="1606970629" expires="1607030629" headers="(created) (expires) digest" signature="Base64(BLAKE-512(signing string))"'
