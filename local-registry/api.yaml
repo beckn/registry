@@ -133,6 +133,8 @@ paths:
                   $ref: '#/components/schemas/Country/properties/code'
                 city:
                   $ref: '#/components/schemas/City/properties/code'
+                unique_key_id:
+                  $ref: '#/components/schemas/Subscriber/properties/unique_key_id'
       responses:
         '200':
           description: List of subscribers with ```state = "SUBSCRIBED"```
@@ -212,6 +214,9 @@ components:
             - EXPIRED
             - UNSUBSCRIBED
             - INVALID_SSL
+        unique_key_id:
+          description: Id associated with the keys of the subscriber. A subscriber can have multiple keys and each key can have it's own unique_key_id.
+          type: string
         created:
           type: string
           format: date-time
