@@ -4,7 +4,7 @@ info:
   description: API Spec for the Registry Infrastructure
   version: 0.2.0
   license:
-    name: CC-BY-ND
+    name: CC-BY-NC-SA
     url: 'https://github.com/beckn/protocol-specifications/blob/master/LICENSE.md'
 paths:
   /subscribe:
