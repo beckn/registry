@@ -1,8 +1,4 @@
----
-title: "Beckn"
-metaTitle: "Beckn for Developers"
-metaDescription: "Documentation for developers of the Beckn ecosystem"
----
+# The Network Registry
 
 ## Release History
 
