@@ -134,6 +134,9 @@ paths:
             schema:
               type: object
               properties:
+                unique_key_id:
+                  type: string
+                  format: uuid
                 subscriber_id:
                   type: string
                 type:
@@ -181,12 +184,15 @@ components:
           description: Country code as per ISO 3166-1 and ISO 3166-2 format
     
     Domain:
-      description: Describes the domain of an object
+      description: Industry domain code
       type: string
       
     Subscriber:
       type: object
       properties:
+        unique_key_id:
+          type: string
+          format: uuid
         subscriber_id:
           type: string
         subscriber_url:
